@@ -287,7 +287,7 @@ def saveAndPlot():
 	
 	
 #Calibration Sequence
-print 'calibrating'
+print ('calibrating')
 for i in range(100):
 	calSensorValues = getData(0,0,0,0)
 	calAccEuler = accCalcEuler(calSensorValues)
@@ -295,16 +295,16 @@ for i in range(100):
 	magPsiValues.append(calMagEuler.item((2,0)))
 	time.sleep(.009)
 magCorrectionMean = np.mean(magPsiValues)
-print magCorrectionMean
+print (magCorrectionMean)
 gyroRollCorrection = np.mean(gyroRoll)
 gyroPitchCorrection = np.mean(gyroPitch)
 gyroYawCorrection = np.mean(gyroYaw)
 accXCorrection = np.mean(accX)
 accYCorrection = np.mean(accY)
 
-print 'calibration over, starting in 3 seconds'
+print ('calibration over, starting in 3 seconds')
 time.sleep(3)
-print 'starting'
+print ('starting')
 
 #Resetting Variables Common to calibration sequence and data-collection
 times = []
@@ -371,7 +371,7 @@ def data_collect():
 	while(end!="end"):
 		currentTime = time.time() - startTime
 		sensorValues = getData(currentTime, gyroRollCorrection, gyroPitchCorrection, gyroYawCorrection)
-		print currentTime
+		print (currentTime)
 		
 		if (len(times) >= 2): #does a dt exist yet?
 			dt_gyro = times[-1] - times[-2]
@@ -401,7 +401,7 @@ def data_collect():
 		
 	#save Plots if requested
 	if(saveIndicator == "y" or saveIndicator == "Y"):
-		print "Saving data. This takes forever."
+		print ("Saving data. This takes forever.")
 		saveAndPlot()
 
 #Threading
