@@ -1,4 +1,10 @@
-import smbus
+try:
+	import smbus2 as smbus
+except ImportError:
+	print('WARNING: Using fake hardware')
+	from .fakeHW import smbus
+	# from fake_rpi import smbus
+
 import time
 
 ## MPU9250 Default I2C slave address
