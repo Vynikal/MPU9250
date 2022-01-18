@@ -255,13 +255,13 @@ def graph(figNum,series1,label1,series2,label2,series3,label3,plotTitle,plotYLab
 	plt.title(plotTitle)
 	plt.xlabel("Time(s)")
 	plt.ylabel(plotYLabel)
-	plt.savefig("/home/pi/MPU9250/"+fileName+savePath)	
+	plt.savefig("/home/kuba/Echologger/mpu9250/"+fileName+savePath)	
 	
 #Nine calls to graph function with proper data series
 def saveAndPlot():
 	global true_times
 	global true_angles
-	np.savetxt("/home/pi/MPU9250/"+fileName+"/rawData.csv", dataSet, delimiter = ',')
+	np.savetxt("/home/kuba/Echologger/mpu9250/"+fileName+"/rawData.csv", dataSet, delimiter = ',')
 	graph(1,gyroYaw,'gyroYaw',gyroPitch,'gyroPitch',gyroRoll,'gyroRoll',"Gyro Output vs. Time","Gyro Output (dps)","/rawOutput/gyroOutput.png")
 	graph(2,accX,'accX',accY,'Acc Y',accZ,'Acc Z',"Acc. Output vs. Time","Acc. Output (m/s/s)","/rawOutput/accelerometerOutput.png")
 	graph(3,magX,'Mag X',magY,'Mag Y',magZ,'Mag Z',"Magnetometer Output vs. Time","Magnetometer Output (uT)","/rawOutput/magnetometerOutput.png")
@@ -283,7 +283,7 @@ def saveAndPlot():
 	plt.title('Roll estimates Compared to True Value')
 	plt.xlabel('Time (sec)')
 	plt.ylabel('Angle (degrees)')
-	plt.savefig('/home/pi/MPU9250/'+fileName+'/comparisons/rollEstimatesAndTrue.png')
+	plt.savefig('/home/kuba/Echologger/mpu9250/'+fileName+'/comparisons/rollEstimatesAndTrue.png')
 	
 	
 #Calibration Sequence
