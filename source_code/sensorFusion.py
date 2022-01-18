@@ -17,26 +17,26 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import os
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import threading
 
 #Creating Objects
 sensor = FaBo9Axis_MPU9250.MPU9250()
 
-#Setting up the GPIO ports for stepper motor
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
+# #Setting up the GPIO ports for stepper motor
+# GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BOARD)
 
 pulsePin = 8
 directionPin = 10
 enablePin = 12
 
-GPIO.setup(pulsePin, GPIO.OUT)
-GPIO.setup(directionPin, GPIO.OUT)
-GPIO.setup(enablePin, GPIO.OUT)
+# GPIO.setup(pulsePin, GPIO.OUT)
+# GPIO.setup(directionPin, GPIO.OUT)
+# GPIO.setup(enablePin, GPIO.OUT)
 
-GPIO.output(enablePin, False)
-GPIO.output(directionPin, False) #Switch to true for other way
+# GPIO.output(enablePin, False)
+# GPIO.output(directionPin, False) #Switch to true for other way
 
 #Empty list to hold full set of raw data
 dataSet = []
@@ -328,37 +328,37 @@ startTime = time.time()
 currentTime = 0
 errorVal = []
 
-#Stepper Motor Sequence
-def stepper_motor():
-	global end
-	global true_times
-	global true_angles
+# #Stepper Motor Sequence
+# def stepper_motor():
+# 	global end
+# 	global true_times
+# 	global true_angles
 	
-	for i in range (25000/6):
-		GPIO.output(pulsePin, True)
-		time.sleep(.00025)
-		GPIO.output(pulsePin, False)
-		time.sleep(.00025)
-		true_angles.append((360.0*i)/25000.0)
-		true_times.append(time.time() - startTime)
+# 	for i in range (25000/6):
+# 		GPIO.output(pulsePin, True)
+# 		time.sleep(.00025)
+# 		GPIO.output(pulsePin, False)
+# 		time.sleep(.00025)
+# 		true_angles.append((360.0*i)/25000.0)
+# 		true_times.append(time.time() - startTime)
         
-	GPIO.output(directionPin, True)
+# 	GPIO.output(directionPin, True)
     
-	for r in range (25000/3):
-		GPIO.output(pulsePin, True)
-		time.sleep(.00025)
-		GPIO.output(pulsePin, False)
-		time.sleep(.00025)
-		true_angles.append(60 - (360.0*r)/25000.0)
-		true_times.append(time.time() - startTime)
+# 	for r in range (25000/3):
+# 		GPIO.output(pulsePin, True)
+# 		time.sleep(.00025)
+# 		GPIO.output(pulsePin, False)
+# 		time.sleep(.00025)
+# 		true_angles.append(60 - (360.0*r)/25000.0)
+# 		true_times.append(time.time() - startTime)
         
-	GPIO.cleanup()
-	end = "end"
+# 	GPIO.cleanup()
+# 	end = "end"
 
 def stepper_100():
 	global end
 	end = "wait"
-	time.sleep(100)
+	time.sleep(10)
 	end = "end"
 
 #data collection sequence
